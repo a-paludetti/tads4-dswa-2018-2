@@ -1,89 +1,165 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Exemplo AJAX - jQuery</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <style>
-            .male {
-                
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- link referencia bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- link referencia fontes-->
+    <link href="https://fonts.googleapis.com/css?family=Calligraffitti" rel="stylesheet">
+    
+    <link href="https://github.com/a-paludetti/a-paludetti.github.io" />
+    <title></title>
+
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        h1 {
+            font-family: 'Calligraffitti', cursive;
+            text-align: center;
+            font-size: 75px;
+            margin: 40px 0 0 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 0px 0 70px 0;
+        }
+
+        div {
+            height: 300px;
+        }
+
+        .foto{
+            float: left;
+        }
+
+        .foootnote {
+            font-size: 10px;
+            margin: 0 auto;
+            position: absolute;
+            text-align: center;
+        }
+
+        .skills1 {
+            background-image: url("/java.png");
+            background
+        }
+
+        p {
+            padding: 10px;
+            line-height: 30px;
+            text-align: justify;
+            position: relative;
+            bottom: 0;
+            margin: 0;
+         }
+
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 30px;
+                margin-top: 20px;
+                line-height: 57px;
             }
-            .female {
-                
+            h2 {
+                font-size: 10px;
+                margin: 5px 0 10px 0;
             }
-        </style>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script>
+            div {
+                margin: 20px 12px 0 12px;
+            }
+            p{
+                position: absolute;
+            }
+        }
 
-            function carregarProdutos() {
-                $.ajax({
-                    method: "GET",
-                    url: "http://localhost:8084/exemplos/produtos-ajax",
-                    dataType: "json"
-                }).done(function (dataJSON) {
-                    for (let i = 0; i < dataJSON.length; i++) {
-                        let itemDom = "<div class=\"col-sm-4\">" +
-                                "<img src=\"" + dataJSON[i].imagem + "\">" +
-                                "<h2>" + dataJSON[i].nome + "</h2>" +
-                                "<p>" + dataJSON[i].descricao + "</p>" + "</div>";
-                        $("#lista").append(itemDom);
-                    }
-                }).fail(function (data) {
-                    alert("Erro");
-                });
+        @media (max-width: 800px) {
+            h1 {
+                font-size: 60px;
+                margin-top: 30px;
             }
 
-            // Versão reduzida do código acima
-            function carregarProdutos2() {
-                $.getJSON("http://localhost:8080/exemplos/produtos-ajax", function (dataJSON) {
-                    for (let i = 0; i < dataJSON.length; i++) {
-                        let itemDom = "<div class=\"col-sm-4\">" +
-                                "<img src=\"" + dataJSON[i].imagem + "\">" +
-                                "<h2>" + dataJSON[i].nome + "</h2>" +
-                                "<p>" + dataJSON[i].descricao + "</p>" + "</div>";
-                        $("#lista").append(itemDom);
-                    }
-                });
+            h2 {
+                font-size: 30px;
+                margin: 5px 0 30px 0;
             }
 
-            $(function () {
-                $("#botao").on("click", function (ev) {
-                    carregarProdutos();
-                })
-            });
-        </script>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Produtos</h1>
-            <div class="row" id="lista">
+            div {
+                margin: 40px 12px 0 12px;
+            }
+            p{
+                position: absolute;
+            }
+        }
 
-                <div class="col-sm-4">
-                    <img src="http://via.placeholder.com/300x200">
-                    <h2>Produto 1</h2>
-                    <p>Descrição do produto</p>
-                    <p>R$ 30,00</p>
-                </div>
-
-                <div class="col-sm-4">
-                    <img src="http://via.placeholder.com/300x200">
-                    <h2>Produto 1</h2>
-                    <p>Descrição do produto</p>
-                    <p>R$ 30,00</p>
-                </div>
-
-                <div class="col-sm-4">
-                    <img src="http://via.placeholder.com/300x200">
-                    <h2>Produto 1</h2>
-                    <p>Descrição do produto</p>
-                    <p>R$ 30,00</p>
-                </div>
-
-            </div>
-            <button id="botao">Carregar mais</button>
+    </style>
+</head>
+<body>
+    <div class="foto">
+        <div class="col-6">
+            <img src="IMG_0952.JPG" />
         </div>
-    </body>
+    </div>
+    <div class="name">
+        <div class="col-6">
+            <h1>
+                Aline Paludetti
+            </h1>
+            <h2>
+                web &amp; java developer
+            </h2>
+        </div>
+    </div>
+
+    <div class="skills1">
+        <div class=" col-3 col-md-4 col-sm-12">
+            <p>
+                Java<br />
+            </p>
+        </div>
+    </div>
+    <div class="skills2">
+        <div class=" col-3 col-md-4 col-sm-12">
+            <p>
+                HTML/CSS
+            </p>
+        </div>
+    </div>
+    <div class="skills3">
+        <div class=" col-3 col-md-4 col-sm-12">
+            <p>
+                Softskills
+            </p>
+        </div>
+    </div>
+    <div class="skills3">
+        <div class=" col-3 col-md-4 col-sm-12">
+            <p>
+                skill 4
+            </p>
+        </div>
+    </div>
+    <div class="contato">
+        <div class="col-12">
+            <p>
+                Telefone: +55 1197633-8343
+                e-mail: a.paludetti@gmail.com
+            </p>
+        </div>
+    </div>
+    <div class="foootnote">
+        <div class="col-12">
+            <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        </div>
+    </div>
+    <!-- **boostrap** -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+</body>
 </html>
